@@ -20,7 +20,7 @@ html{scroll-behavior:smooth}
 body{width:100%;background:var(--cream);overflow-x:hidden;font-family:'Cormorant Garamond',serif;margin:0;color:var(--oxblood)}
 
 #petalCanvas{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:1}
-#overlay{position:fixed;inset:0;background:#f4eae7;z-index:9998;opacity:0;pointer-events:none;transition:opacity .8s ease}
+#overlay{position:fixed;inset:0;background:#fff3e6;z-index:9998;opacity:0;pointer-events:none;transition:opacity .8s ease}
 #overlay.show{opacity:1;pointer-events:all}
 .screen{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;overflow:hidden;transition:opacity .8s ease}
 .screen.hidden{opacity:0;pointer-events:none}
@@ -43,7 +43,7 @@ body{width:100%;background:var(--cream);overflow-x:hidden;font-family:'Cormorant
 .poem-slideshow{position:absolute;inset:0;overflow:hidden;z-index:0}
 .poem-slideshow img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 2.2s ease}
 .poem-slideshow img.active{opacity:.24}
-.poem-slideshow::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(40,1,1,.35) 0%,rgba(40,1,1,.55) 100%);pointer-events:none}
+.poem-slideshow::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,248,240,.2) 0%,rgba(255,248,240,.3) 100%);pointer-events:none}
 
 .intro-floral{position:absolute;width:220px;height:220px;pointer-events:none;opacity:0;animation:floralReveal 1.2s ease .5s forwards}
 @keyframes floralReveal{from{opacity:0;transform:scale(.88)}to{opacity:1;transform:scale(1)}}
@@ -66,7 +66,7 @@ body{width:100%;background:var(--cream);overflow-x:hidden;font-family:'Cormorant
 .cf{position:absolute;width:200px;height:200px;pointer-events:none;z-index:1;opacity:.35}
 .cf-tl{top:-8px;left:-8px}.cf-tr{top:-8px;right:-8px;transform:scaleX(-1)}
 .cf-bl{bottom:-8px;left:-8px;transform:scaleY(-1)}.cf-br{bottom:-8px;right:-8px;transform:scale(-1,-1)}
-.s2-content{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;gap:30px;text-align:center;padding:50px 20px}
+.s2-content{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;gap:30px;text-align:center;padding:50px 20px;animation:fadeUp 1s ease .2s both}
 .p1-pre{font-style:italic;font-size:15px;color:var(--mulberry);letter-spacing:.2em}
 
 .env-scene{position:relative;width:340px;max-width:86vw;padding-bottom:24px;cursor:pointer;transition:transform .4s cubic-bezier(.34,1.56,.64,1)}
@@ -112,18 +112,37 @@ body{width:100%;background:var(--cream);overflow-x:hidden;font-family:'Cormorant
 .scroll-hint{font-style:italic;font-size:13px;color:var(--mulberry);letter-spacing:.14em;animation:softPulse 3s ease-in-out infinite}
 @keyframes softPulse{0%,100%{opacity:.35}50%{opacity:.95}}
 
-/* SCREEN 3 — POEM */
-#sPoem{z-index:80;background:none}
-.poem-bg{position:absolute;inset:0;background:
-  radial-gradient(ellipse 55% 80% at 28% 28%,#735451 0%,transparent 60%),
-  radial-gradient(ellipse 70% 60% at 80% 80%,#5c2a2a 0%,transparent 60%),
-  linear-gradient(135deg,#735451 0%,#4a1a18 55%,#400101 100%)}
-.poem-content{position:relative;z-index:2;text-align:center;padding:0 28px;display:flex;flex-direction:column;align-items:center;gap:22px;max-width:580px}
-.poem-line{font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(17px,3.2vw,26px);color:#f6ece9;opacity:0;transform:translateY(28px);transition:opacity 1.6s ease,transform 1.6s ease;line-height:1.85}
+/* SCREEN 3 — DOORS */
+#sPoem{z-index:80;background:#fff3e6}
+.door-light{position:absolute;inset:0;background:radial-gradient(ellipse 60% 70% at 50% 50%,#fffefb 0%,#fbe6d4 45%,#d9b7a6 100%)}
+.door-rays{position:absolute;inset:-60%;z-index:2;background:repeating-conic-gradient(from 0deg at 50% 50%,rgba(255,244,226,.6) 0deg 4deg,transparent 4deg 14deg);opacity:0;transition:opacity 2s ease .5s;animation:raySpin 40s linear infinite}
+@keyframes raySpin{to{transform:rotate(360deg)}}
+#sPoem.open .door-rays{opacity:.7}
+.doors{position:absolute;inset:0;z-index:3;display:flex;perspective:1400px;perspective-origin:50% 50%;pointer-events:none}
+.door{position:relative;width:50%;height:100%;background:linear-gradient(180deg,#5a1210 0%,#400101 55%,#2c0101 100%);transition:transform 3.4s cubic-bezier(.55,0,.25,1)}
+.door.l{transform-origin:left center;border-right:1px solid rgba(166,135,124,.6)}
+.door.r{transform-origin:right center;border-left:1px solid rgba(166,135,124,.6)}
+.door::before{content:'';position:absolute;inset:7% 9%;border:1px solid rgba(166,135,124,.55);outline:1px solid rgba(166,135,124,.25);outline-offset:6px}
+.door::after{content:'';position:absolute;top:50%;width:10px;height:10px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#d9bfb4,#A6877C 60%,#735451);box-shadow:0 0 0 4px rgba(166,135,124,.25)}
+.door.l::after{right:14px}.door.r::after{left:14px}
+#sPoem.open .door.l{transform:rotateY(-108deg)}
+#sPoem.open .door.r{transform:rotateY(108deg)}
+.door-seam{position:absolute;top:0;bottom:0;left:50%;width:2px;margin-left:-1px;z-index:4;background:linear-gradient(180deg,transparent,#fff3e6 20%,#fff3e6 80%,transparent);box-shadow:0 0 18px 6px rgba(255,236,214,.8);animation:softPulse 3s ease-in-out infinite;transition:opacity 1s ease}
+#sPoem.open .door-seam{opacity:0;animation:none}
+.door-emblem{position:absolute;z-index:4;left:50%;top:26%;width:110px;transform:translateX(-50%);filter:brightness(1.9) saturate(.8);opacity:0;animation:fadeUp 1.6s ease .6s forwards;transition:opacity 1s ease}
+#sPoem.open .door-emblem{opacity:0!important;animation:none}
+#sPoem.charge .door-seam{width:5px;margin-left:-2.5px;box-shadow:0 0 44px 16px rgba(255,236,214,.95);animation:none;opacity:1;transition:all 1.4s ease}
+.tw{position:absolute;width:10px;height:10px;background:#A6877C;clip-path:polygon(50% 0,60% 40%,100% 50%,60% 60%,50% 100%,40% 60%,0 50%,40% 40%);animation:twinkle 3.5s ease-in-out infinite;pointer-events:none;z-index:1}
+@keyframes twinkle{0%,100%{opacity:.15;transform:scale(.6)}50%{opacity:.9;transform:scale(1.1)}}
+.door-flood{position:absolute;inset:0;z-index:6;background:radial-gradient(circle at 50% 50%,#fffefb 0%,#fff3e6 70%);opacity:0;transition:opacity 1.2s ease;pointer-events:none}
+#sPoem.flood .door-flood{opacity:1}
+.poem-content{position:relative;z-index:5;text-align:center;padding:0 28px;display:flex;flex-direction:column;align-items:center;gap:22px;max-width:580px;transition:opacity 1s ease}
+#sPoem.open .poem-content{opacity:0}
+.poem-line{font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(17px,3.2vw,26px);color:#f6ece9;opacity:0;transform:translateY(28px);transition:opacity 1.6s ease,transform 1.6s ease;line-height:1.85;text-shadow:0 1px 14px rgba(0,0,0,.4)}
 .poem-line.visible{opacity:1;transform:translateY(0)}
 .poem-divider{width:50px;height:1px;background:linear-gradient(90deg,transparent,var(--taupe),transparent);opacity:0;transition:opacity 1.2s ease}
 .poem-divider.visible{opacity:1}
-.poem-skip{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:13px;color:rgba(246,236,233,.6);letter-spacing:.18em;cursor:pointer;position:absolute;bottom:36px;left:50%;transform:translateX(-50%);animation:softPulse 3s ease-in-out infinite;border:none;background:none;padding:0;z-index:10}
+.poem-skip{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:13px;color:rgba(246,236,233,.7);letter-spacing:.18em;cursor:pointer;position:absolute;bottom:36px;left:50%;transform:translateX(-50%);animation:softPulse 3s ease-in-out infinite;border:none;background:none;padding:0;z-index:10}
 .poem-skip:hover{color:#fff}
 
 /* SCREEN 4 — MAIN */
@@ -233,43 +252,38 @@ body{width:100%;background:var(--cream);overflow-x:hidden;font-family:'Cormorant
     <ellipse cx="130" cy="70" rx="14" ry="9" fill="#A6877C" opacity=".4" transform="rotate(22 130 70)"/>
     <circle cx="130" cy="67" r="3" fill="#f4eae7"/>
   </symbol>
+  <path id="st4" d="M0-5 L1.2-1.2 L5 0 L1.2 1.2 L0 5 L-1.2 1.2 L-5 0 L-1.2-1.2Z"/>
+  <symbol id="sky" viewBox="0 0 220 220" fill="none">
+    <mask id="cm2"><rect width="220" height="220" fill="#fff"/><circle cx="58" cy="40" r="21" fill="#000"/></mask>
+    <circle cx="46" cy="48" r="26" fill="#735451" mask="url(#cm2)" opacity=".85"/>
+    <path d="M8 110 C40 100 80 70 120 8" stroke="#A6877C" stroke-width=".8" stroke-dasharray="2 5" opacity=".6"/>
+    <use href="#st4" transform="translate(112 34) scale(3.2)" fill="#735451" opacity=".85"/>
+    <use href="#st4" transform="translate(34 112) scale(2.6)" fill="#A6877C"/>
+    <use href="#st4" transform="translate(92 92) scale(1.8)" fill="#A6877C"/>
+    <use href="#st4" transform="translate(152 66) scale(1.5)" fill="#735451" opacity=".8"/>
+    <use href="#st4" transform="translate(66 152) scale(1.5)" fill="#735451" opacity=".8"/>
+    <use href="#st4" transform="translate(150 150) scale(1)" fill="#A6877C" opacity=".7"/>
+    <circle cx="130" cy="104" r="1.6" fill="#A6877C"/><circle cx="104" cy="130" r="1.6" fill="#A6877C"/><circle cx="178" cy="40" r="1.4" fill="#A6877C"/><circle cx="40" cy="178" r="1.4" fill="#A6877C"/><circle cx="18" cy="84" r="1.2" fill="#735451"/><circle cx="84" cy="18" r="1.2" fill="#735451"/>
+  </symbol>
   <symbol id="orn" viewBox="0 0 70 28" fill="none">
-    <ellipse cx="35" cy="14" rx="10" ry="8" fill="#A6877C"/>
-    <ellipse cx="34" cy="12" rx="7" ry="6" fill="#cdb5ad"/>
-    <circle cx="35" cy="10" r="2.5" fill="#fffdfc"/>
-    <ellipse cx="16" cy="17" rx="8" ry="5.5" fill="#A6877C" opacity=".6" transform="rotate(-22 16 17)"/>
-    <circle cx="16" cy="15" r="2" fill="#f4eae7"/>
-    <ellipse cx="54" cy="17" rx="8" ry="5.5" fill="#A6877C" opacity=".6" transform="rotate(22 54 17)"/>
-    <circle cx="54" cy="15" r="2" fill="#f4eae7"/>
-    <circle cx="4" cy="19" r="2" fill="#735451" opacity=".45"/>
-    <circle cx="66" cy="19" r="2" fill="#735451" opacity=".45"/>
+    <mask id="cm"><rect width="70" height="28" fill="#fff"/><circle cx="39.5" cy="11.5" r="8.6" fill="#000"/></mask>
+    <circle cx="35" cy="14" r="10.5" fill="#735451" mask="url(#cm)"/>
+    <path transform="translate(50 9)" d="M0-5 L1.2-1.2 L5 0 L1.2 1.2 L0 5 L-1.2 1.2 L-5 0 L-1.2-1.2Z" fill="#A6877C"/>
+    <path transform="translate(60 18) scale(.6)" d="M0-5 L1.2-1.2 L5 0 L1.2 1.2 L0 5 L-1.2 1.2 L-5 0 L-1.2-1.2Z" fill="#735451"/>
+    <path transform="translate(18 14)" d="M0-5 L1.2-1.2 L5 0 L1.2 1.2 L0 5 L-1.2 1.2 L-5 0 L-1.2-1.2Z" fill="#A6877C" opacity=".8"/>
+    <path transform="translate(9 20) scale(.5)" d="M0-5 L1.2-1.2 L5 0 L1.2 1.2 L0 5 L-1.2 1.2 L-5 0 L-1.2-1.2Z" fill="#735451"/>
+    <circle cx="27" cy="5" r="1.1" fill="#A6877C"/><circle cx="67" cy="10" r="1" fill="#A6877C" opacity=".7"/><circle cx="3" cy="12" r="1" fill="#A6877C" opacity=".7"/>
   </symbol>
 </svg>
 
-<!-- SCREEN 1: INTRO -->
-<div class="screen" id="sIntro">
-  <div class="intro-bg"></div>
-  <svg class="intro-floral tl" viewBox="0 0 220 220"><use href="#fl"/></svg>
-  <svg class="intro-floral tr" viewBox="0 0 220 220"><use href="#fl"/></svg>
-  <svg class="intro-floral bl" viewBox="0 0 220 220"><use href="#fl"/></svg>
-  <svg class="intro-floral br" viewBox="0 0 220 220"><use href="#fl"/></svg>
-  <div class="intro-content">
-    <p class="intro-eyebrow">a celebration of</p>
-    <h1 class="intro-title">Martina</h1>
-    <div class="intro-rule"></div>
-    <p class="intro-sub">An evening of elegance &amp; love</p>
-    <div class="intro-loading"><div class="intro-dot"></div><div class="intro-dot"></div><div class="intro-dot"></div></div>
-  </div>
-</div>
-
 <!-- SCREEN 2: ENVELOPE -->
-<div class="screen hidden" id="sEnvelope">
+<div class="screen" id="sEnvelope">
   <div class="s2-bg"></div>
   <div class="s2-lines"></div>
-  <svg class="cf cf-tl" viewBox="0 0 220 220"><use href="#fl"/></svg>
-  <svg class="cf cf-tr" viewBox="0 0 220 220"><use href="#fl"/></svg>
-  <svg class="cf cf-bl" viewBox="0 0 220 220"><use href="#fl"/></svg>
-  <svg class="cf cf-br" viewBox="0 0 220 220"><use href="#fl"/></svg>
+  <svg class="cf cf-tl" viewBox="0 0 220 220"><use href="#sky"/></svg>
+  <svg class="cf cf-tr" viewBox="0 0 220 220"><use href="#sky"/></svg>
+  <svg class="cf cf-bl" viewBox="0 0 220 220"><use href="#sky"/></svg>
+  <svg class="cf cf-br" viewBox="0 0 220 220"><use href="#sky"/></svg>
 
   <div class="s2-content">
     <p class="p1-pre">a letter awaits you</p>
@@ -296,13 +310,11 @@ body{width:100%;background:var(--cream);overflow-x:hidden;font-family:'Cormorant
           <div class="env-flap" id="envFlap">
             <div class="env-flap-front">
               <svg class="env-flap-floral" id="envFlapFloral" viewBox="0 0 80 60" fill="none">
-                <ellipse cx="40" cy="30" rx="14" ry="11" fill="#A6877C" opacity=".6"/>
-                <ellipse cx="39" cy="27" rx="9" ry="8" fill="#cdb5ad" opacity=".9"/>
-                <circle cx="40" cy="25" r="3.2" fill="#f4eae7"/>
-                <ellipse cx="20" cy="36" rx="10" ry="7" fill="#A6877C" opacity=".5" transform="rotate(-22 20 36)"/>
-                <circle cx="20" cy="33" r="2.2" fill="#f4eae7"/>
-                <ellipse cx="60" cy="36" rx="10" ry="7" fill="#A6877C" opacity=".5" transform="rotate(22 60 36)"/>
-                <circle cx="60" cy="33" r="2.2" fill="#f4eae7"/>
+                <mask id="cm3"><rect width="80" height="60" fill="#fff"/><circle cx="46" cy="24" r="12" fill="#000"/></mask>
+                <circle cx="38" cy="30" r="15" fill="#735451" mask="url(#cm3)" opacity=".8"/>
+                <use href="#st4" transform="translate(58 22) scale(2.2)" fill="#A6877C"/>
+                <use href="#st4" transform="translate(18 36) scale(1.5)" fill="#A6877C"/>
+                <use href="#st4" transform="translate(64 40) scale(1)" fill="#735451" opacity=".7"/>
               </svg>
             </div>
             <div class="env-flap-back"></div>
@@ -318,9 +330,9 @@ body{width:100%;background:var(--cream);overflow-x:hidden;font-family:'Cormorant
         <div style="position:absolute;top:6%;right:4%;width:12%;z-index:6;pointer-events:none;">
           <svg viewBox="0 0 44 36" fill="none">
             <rect x="1.5" y="1.5" width="41" height="33" rx="2" fill="#fffdfc" stroke="#A6877C" stroke-width=".8" stroke-dasharray="3,2.2"/>
-            <ellipse cx="22" cy="18" rx="13" ry="10" fill="#e4d3cd"/>
-            <ellipse cx="20" cy="16" rx="9" ry="7.5" fill="#A6877C"/>
-            <circle cx="21" cy="14" r="3" fill="#f4eae7"/>
+            <mask id="cm4"><rect width="44" height="36" fill="#fff"/><circle cx="25" cy="14" r="7" fill="#000"/></mask>
+            <circle cx="19" cy="18" r="9" fill="#735451" mask="url(#cm4)"/>
+            <use href="#st4" transform="translate(32 22) scale(1.4)" fill="#A6877C"/>
           </svg>
         </div>
 
@@ -342,20 +354,15 @@ body{width:100%;background:var(--cream);overflow-x:hidden;font-family:'Cormorant
   </div>
 </div>
 
-<!-- SCREEN 3: POEM -->
+<!-- SCREEN 3: DOORS -->
 <div class="screen hidden" id="sPoem">
-  <div class="poem-bg"></div>
+  <div class="door-light"></div>
+  <div class="door-rays"></div>
   <div class="poem-slideshow" id="poemSlideshow"></div>
-  <div class="poem-content" id="poemContent">
-    <div class="poem-divider" id="pd0"></div>
-    <div class="poem-line" id="pl0">A flower is about to bloom,</div>
-    <div class="poem-line" id="pl1">And the stars will witness her shine.</div>
-    <div class="poem-divider" id="pd1"></div>
-    <div class="poem-line" id="pl2">She's turning eighteen with elegance and grace,</div>
-    <div class="poem-line" id="pl3">You are warmly invited to be part of her special night.</div>
-    <div class="poem-divider" id="pd2"></div>
-  </div>
-  <button class="poem-skip" onclick="goToMain()">skip ↓</button>
+  <div class="doors"><div class="door l"></div><div class="door r"></div></div>
+  <div class="door-seam"></div>
+  <svg class="door-emblem" viewBox="0 0 70 28"><use href="#orn"/></svg>
+  <div class="door-flood"></div>
 </div>
 
 <!-- SCREEN 4: MAIN INVITATION -->
@@ -573,7 +580,6 @@ function transitionTo(fromId,toId,cb){
     if(cb)cb();
   },700);
 }
-window.addEventListener('load',()=>{setTimeout(()=>transitionTo('sIntro','sEnvelope'),3200)});
 
 /* ENVELOPE OPEN */
 let envelopeOpened=false;
@@ -594,20 +600,36 @@ function openEnvelope(){
   },2600);
 }
 
-/* POEM */
-let autoAdvanceTimer=null,mainReached=false;
+/* DOORS */
+let poemTimers=[],mainReached=false;
 function goToMain(){
   if(mainReached)return;
   mainReached=true;
-  if(autoAdvanceTimer){clearTimeout(autoAdvanceTimer);autoAdvanceTimer=null}
+  poemTimers.forEach(clearTimeout);poemTimers=[];
   transitionTo('sPoem','sMain');
 }
-const poemSequence=[{id:'pd0',delay:700},{id:'pl0',delay:2000},{id:'pl1',delay:5000},{id:'pd1',delay:8000},{id:'pl2',delay:9500},{id:'pl3',delay:13000},{id:'pd2',delay:16500}];
-const AUTO_ADVANCE_MS=19500;
-function startPoem(){
-  poemSequence.forEach(({id,delay})=>{setTimeout(()=>{const el=document.getElementById(id);if(el)el.classList.add('visible')},delay)});
-  autoAdvanceTimer=setTimeout(goToMain,AUTO_ADVANCE_MS);
+function openDoors(){
+  const s=document.getElementById('sPoem');
+  s.classList.add('open');
+  poemTimers.push(setTimeout(()=>s.classList.add('flood'),2300));
+  poemTimers.push(setTimeout(goToMain,3800));
 }
+function startPoem(){
+  const s=document.getElementById('sPoem');
+  poemTimers.push(setTimeout(()=>s.classList.add('charge'),1500));
+  poemTimers.push(setTimeout(openDoors,3000));
+}
+
+/* TWINKLING STARS ON ENVELOPE SCREEN */
+(function(){
+  const host=document.getElementById('sEnvelope');
+  for(let i=0;i<22;i++){
+    const t=document.createElement('span');t.className='tw';
+    const z=5+Math.random()*9;
+    t.style.cssText=`left:${Math.random()*100}%;top:${Math.random()*100}%;width:${z}px;height:${z}px;animation-delay:${Math.random()*3.5}s;animation-duration:${2.5+Math.random()*3}s`;
+    host.appendChild(t);
+  }
+})();
 
 /* BG PHOTOS */
 function tryBg(src,id){
