@@ -125,21 +125,21 @@ body{width:100%;background:var(--cream);overflow-x:hidden;font-family:'Spectral'
 #sMain{z-index:70;background:var(--cream);position:relative;overflow-y:auto;display:block}
 #sMain.hidden{display:none!important}
 .p2-hero{position:relative;width:100%;min-height:100vh;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding-bottom:96px;background:var(--cream)}
-.p2-hero-bg{position:absolute;top:0;left:0;right:0;height:max(68vh,420px);z-index:0;background:radial-gradient(ellipse 55% 80% at 28% 28%,#8a6a64 0%,transparent 55%),linear-gradient(135deg,#735451 0%,#4a1a18 55%,#400101 100%);background-size:cover;background-position:center 20%}
+.p2-hero-bg{--hero-pos:center 40%;position:absolute;top:0;left:0;right:0;height:max(78vh,480px);z-index:0;background:radial-gradient(ellipse 55% 80% at 28% 28%,#8a6a64 0%,transparent 55%),linear-gradient(135deg,#735451 0%,#4a1a18 55%,#400101 100%);background-size:cover;background-position:var(--hero-pos)}
 .p2-hero-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,rgba(40,1,1,.08) 0%,rgba(40,1,1,0) 55%,rgba(250,245,243,.75) 90%,var(--cream) 100%)}
-.p2-hero-content{position:relative;z-index:2;text-align:center;padding:28px 30px;animation:fadeUp 1s ease .3s both;border:1px solid var(--line);outline:1px solid rgba(166,135,124,.28);outline-offset:7px;margin:max(60vh,380px) 20px 0;background:rgba(255,253,252,.82)}
-.hero-eyebrow{font-style:italic;font-size:15px;color:var(--mulberry);letter-spacing:.16em;margin-bottom:10px;display:block}
-.hero-name{font-family:'Great Vibes',cursive;font-size:clamp(72px,14vw,120px);color:var(--oxblood);line-height:1;margin-bottom:8px}
-.hero-debut{font-family:'Bodoni Moda',serif;font-style:italic;font-size:clamp(14px,2.5vw,20px);color:var(--mulberry);letter-spacing:.06em;margin-top:6px}
+.p2-hero-content{position:relative;z-index:2;text-align:center;padding:30px 30px;animation:fadeUp 1s ease .3s both;border:1px solid rgba(233,216,208,.5);outline:1px solid rgba(233,216,208,.22);outline-offset:7px;margin:max(66vh,420px) 20px 0;background:radial-gradient(circle at 10% 24%,rgba(233,216,208,.9) 0 1px,transparent 1.6px),radial-gradient(circle at 88% 16%,rgba(233,216,208,.8) 0 1.2px,transparent 1.8px),radial-gradient(circle at 78% 82%,rgba(233,216,208,.7) 0 1px,transparent 1.6px),radial-gradient(circle at 20% 86%,rgba(233,216,208,.7) 0 1.2px,transparent 1.8px),linear-gradient(160deg,rgba(64,1,1,.95) 0%,rgba(115,84,81,.92) 100%);box-shadow:0 26px 50px -22px rgba(64,1,1,.65)}
+.hero-eyebrow{font-style:italic;font-size:15px;color:#e4d3cd;letter-spacing:.16em;margin-bottom:10px;display:block}
+.hero-name{font-family:'Great Vibes',cursive;font-size:clamp(72px,14vw,120px);color:#fff8f5;line-height:1;margin-bottom:8px;text-shadow:0 2px 24px rgba(0,0,0,.35)}
+.hero-debut{font-family:'Bodoni Moda',serif;font-style:italic;font-size:clamp(14px,2.5vw,20px);color:#e4d3cd;letter-spacing:.06em;margin-top:6px}
 .hero-rule{display:flex;align-items:center;justify-content:center;gap:14px;margin:18px 0}
-.hero-rule-line{width:80px;height:1px;background:linear-gradient(90deg,transparent,var(--taupe))}
-.hero-rule-line.r{background:linear-gradient(270deg,transparent,var(--taupe))}
-.hero-rule svg path{fill:#A6877C}
+.hero-rule-line{width:80px;height:1px;background:linear-gradient(90deg,transparent,#cdb5ad)}
+.hero-rule-line.r{background:linear-gradient(270deg,transparent,#cdb5ad)}
+.hero-rule svg path{fill:#eadbd3}
 .hero-scroll-cue{position:absolute;bottom:36px;left:50%;transform:translateX(-50%);z-index:2;display:flex;flex-direction:column;align-items:center;gap:6px;animation:bobDown 2s ease-in-out infinite}
 @keyframes bobDown{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(8px)}}
 .hero-scroll-cue span{font-style:italic;font-size:12px;color:var(--oxblood);letter-spacing:.18em}
 
-.p2-body{background:var(--cream);padding:70px 20px 90px;position:relative}
+.p2-body{background:radial-gradient(ellipse 60% 22% at 12% 6%,rgba(166,135,124,.2),transparent 70%),radial-gradient(ellipse 60% 18% at 92% 30%,rgba(166,135,124,.14),transparent 70%),radial-gradient(ellipse 70% 14% at 10% 96%,rgba(166,135,124,.16),transparent 70%),var(--cream);padding:70px 20px 90px;position:relative}
 .p2-inner{max-width:680px;margin:0 auto;position:relative;z-index:2}
 .fdiv{display:flex;align-items:center;gap:16px;margin:36px auto;max-width:420px}
 .fdiv-line{flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--taupe) 50%,transparent);opacity:.7}
@@ -178,6 +178,17 @@ body{width:100%;background:var(--cream);overflow-x:hidden;font-family:'Spectral'
 .trad-list li::before{content:counter(n);font-family:'Bodoni Moda',serif;font-style:italic;font-size:13px;color:var(--taupe);min-width:20px;text-align:right;padding-top:2px}
 .trad-list li:last-child{border-bottom:none}
 
+/* NIGHT SECTION */
+.night{position:relative;overflow:hidden;width:100vw;margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw);padding:150px 20px 150px;background:linear-gradient(180deg,#faf5f3 0,rgba(250,245,243,0) 130px),linear-gradient(0deg,#faf5f3 0,rgba(250,245,243,0) 130px),radial-gradient(ellipse 60% 40% at 80% 20%,#5a1a18 0%,transparent 70%),linear-gradient(180deg,#400101 0%,#2a0303 55%,#400101 100%)}
+.night-in{position:relative;z-index:2;max-width:680px;margin:0 auto}
+.nightmoon{position:absolute;top:150px;right:6%;width:clamp(70px,12vw,120px);z-index:1;opacity:.6;filter:drop-shadow(0 0 18px rgba(233,216,208,.5));animation:floatMoon 8s ease-in-out infinite;pointer-events:none}
+.night .sec-eyebrow{color:#f3e6e1}
+.night .sec-eyebrow::before,.night .sec-eyebrow::after{background:rgba(166,135,124,.6)}
+.night .trad-card{background:rgba(255,253,252,.06);border-color:rgba(166,135,124,.55);outline-color:rgba(166,135,124,.25);box-shadow:none;backdrop-filter:blur(2px)}
+.night .trad-title{color:#f3e6e1}
+.night .trad-title::after{background:var(--taupe)}
+.night .trad-list li{color:#dcc9c2;border-bottom-color:rgba(166,135,124,.25)}
+.night .trad-list li::before{color:var(--taupe)}
 .venue-photo{width:100%;aspect-ratio:16/10;border-radius:120px 120px 4px 4px;overflow:hidden;margin:14px 0;background:var(--tint);border:1px solid var(--line)}
 .venue-photo img{width:100%;height:100%;object-fit:cover;display:block}
 
@@ -361,9 +372,9 @@ body{width:100%;background:var(--cream);overflow-x:hidden;font-family:'Spectral'
         </div>
       </div>
 
-      <div class="photo-break" style="background-image:url('bg-dress-code.jpeg');"></div>
+      <div class="photo-break" style="background-image:url('bg-dress-code.jpeg');margin-bottom:0;"></div>
 
-      <p class="sec-eyebrow">18 Traditions</p>
+      <section class="night" id="night"><svg class="nightmoon" viewBox="0 0 200 200"><mask id="cm6"><rect width="200" height="200" fill="#fff"/><circle cx="138" cy="80" r="68" fill="#000"/></mask><circle cx="98" cy="104" r="78" fill="#eadbd3" mask="url(#cm6)"/></svg><div class="night-in"><p class="sec-eyebrow">18 Traditions</p>
 
       <div class="trad-grid">
       <div class="trad-group"><div class="trad-card">
@@ -393,7 +404,7 @@ body{width:100%;background:var(--cream);overflow-x:hidden;font-family:'Spectral'
           <li>Mrs. Josephine Paldeng</li><li>Mrs. Lina Obedoza</li><li>Mr. Mauro Paldeng</li><li>Mr. Jr. Obedoza</li><li>Mrs. Kendy Sarmiento</li><li>Mr. Nestor Bonrostro</li><li>Mr. Jay Siapno</li><li>Ms. Cheila Abuibag</li><li>Mrs. Jesibeth Salazar</li><li>Mrs. Evelyn Obedoza</li><li>Doc. Rigor Obedoza</li><li>Mrs. Judith Millaflores</li><li>Ms. Rubilyn Panis</li><li>Mr. Rolly Bermuedez</li><li>Ms. Chelzia Calixtro</li><li>Mrs. Delia Talpis</li><li>Mrs. Lorna De Vera</li><li>Rowena Luna Onuki</li>
         </ol>
       </div></div>
-      </div>
+      </div></div></section>
     </div>
 
     <div class="p2-inner">
@@ -568,10 +579,22 @@ function startPoem(){
 /* BG PHOTOS */
 function tryBg(src,id){
   const img=new Image();
-  img.onload=()=>{const el=document.getElementById(id);if(el){el.style.backgroundImage=`url('${src}')`;el.style.backgroundSize='cover';el.style.backgroundPosition='center 20%'}};
+  img.onload=()=>{const el=document.getElementById(id);if(el){el.style.backgroundImage=`url('${src}')`;el.style.backgroundSize='cover'}};
   img.src=src;
 }
 tryBg('main-picture.jpeg','heroBg');
+
+/* STARS IN NIGHT SECTION */
+(function(){
+  const host=document.getElementById('night');
+  if(!host)return;
+  for(let i=0;i<46;i++){
+    const t=document.createElement('span');t.className='tw';
+    const z=4+Math.random()*8;
+    t.style.cssText=`left:${Math.random()*100}%;top:${12+Math.random()*76}%;width:${z}px;height:${z}px;background:#cdb5ad;animation-delay:${Math.random()*3.5}s;animation-duration:${2.5+Math.random()*3}s`;
+    host.appendChild(t);
+  }
+})();
 </script>
 </body>
 </html>
