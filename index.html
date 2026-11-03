@@ -124,12 +124,12 @@ body{width:100%;background:var(--cream);overflow-x:hidden;font-family:'Spectral'
 /* SCREEN 4 — MAIN */
 #sMain{z-index:70;background:var(--cream);position:relative;overflow-y:auto;display:block}
 #sMain.hidden{display:none!important}
-.p2-hero{position:relative;width:100%;min-height:100vh;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.p2-hero{position:relative;width:100%;min-height:100vh;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding-bottom:104px}
 .p2-hero-bg{position:absolute;inset:0;z-index:0;background:
   radial-gradient(ellipse 55% 80% at 28% 28%,#8a6a64 0%,transparent 55%),
   linear-gradient(135deg,#735451 0%,#4a1a18 55%,#400101 100%);background-size:cover;background-position:center}
-.p2-hero-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,rgba(40,1,1,.45) 0%,rgba(40,1,1,.4) 45%,rgba(250,245,243,.78) 85%,var(--cream) 100%)}
-.p2-hero-content{position:relative;z-index:2;text-align:center;padding:44px 34px;animation:fadeUp 1s ease .3s both;border:1px solid rgba(246,236,233,.45);outline:1px solid rgba(246,236,233,.25);outline-offset:7px;margin:0 20px;background:rgba(40,1,1,.18);backdrop-filter:blur(3px)}
+.p2-hero-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,rgba(40,1,1,.12) 0%,rgba(40,1,1,.1) 40%,rgba(40,1,1,.5) 70%,rgba(250,245,243,.85) 94%,var(--cream) 100%)}
+.p2-hero-content{position:relative;z-index:2;text-align:center;padding:30px 30px;animation:fadeUp 1s ease .3s both;border:1px solid rgba(246,236,233,.45);outline:1px solid rgba(246,236,233,.25);outline-offset:7px;margin:0 20px;background:rgba(40,1,1,.3);backdrop-filter:blur(3px)}
 .hero-eyebrow{font-style:italic;font-size:15px;color:rgba(255,240,236,.92);letter-spacing:.16em;margin-bottom:14px;display:block;text-shadow:0 1px 12px rgba(0,0,0,.35)}
 .hero-name{font-family:'Great Vibes',cursive;font-size:clamp(72px,14vw,120px);color:#fff8f5;line-height:1;margin-bottom:8px;text-shadow:0 2px 28px rgba(0,0,0,.45)}
 .hero-debut{font-family:'Bodoni Moda',serif;font-style:italic;font-size:clamp(14px,2.5vw,20px);color:rgba(255,240,236,.92);letter-spacing:.06em;margin-top:6px;text-shadow:0 1px 10px rgba(0,0,0,.3)}
