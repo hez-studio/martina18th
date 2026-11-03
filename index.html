@@ -78,8 +78,8 @@ body{width:100%;background:var(--cream);overflow-x:hidden;font-family:'Spectral'
 .hand.hr{transform:rotate(-5deg)}
 .hand.mn{transform:rotate(-60deg)}
 .clock-scene.striking .hand{transform:rotate(0deg);transition:transform 2s cubic-bezier(.45,0,.2,1)}
-.sec{transform-origin:150px 150px;animation:secSpin 12s linear infinite;transition:opacity .6s}
-.striking .sec{opacity:0}
+.sechand{transform-origin:150px 150px;animation:secSpin 12s linear infinite;transition:opacity .6s}
+.striking .sechand{opacity:0}
 @keyframes secSpin{to{transform:rotate(360deg)}}
 .striking .clock{animation:chime .5s ease 2s 3}
 @keyframes chime{0%,100%{transform:rotate(0)}25%{transform:rotate(1.6deg)}75%{transform:rotate(-1.6deg)}}
@@ -121,92 +121,114 @@ body{width:100%;background:var(--cream);overflow-x:hidden;font-family:'Spectral'
 .poem-skip{font-family:'Spectral',serif;font-style:italic;font-size:13px;color:rgba(246,236,233,.7);letter-spacing:.18em;cursor:pointer;position:absolute;bottom:36px;left:50%;transform:translateX(-50%);animation:softPulse 3s ease-in-out infinite;border:none;background:none;padding:0;z-index:10}
 .poem-skip:hover{color:#fff}
 
-/* SCREEN 4 — MAIN */
-#sMain{z-index:70;background:var(--cream);position:relative;overflow-y:auto;display:block}
+/* SCREEN 4 — MAIN (midnight redesign) */
+#sMain{--night:#260303;z-index:70;position:relative;display:block;color:#e9d8d0;background:radial-gradient(ellipse 70% 30% at 88% 6%,rgba(115,84,81,.5),transparent 70%),radial-gradient(ellipse 70% 26% at 4% 42%,rgba(115,84,81,.32),transparent 70%),radial-gradient(ellipse 80% 26% at 92% 82%,rgba(115,84,81,.38),transparent 70%),var(--night)}
 #sMain.hidden{display:none!important}
-.p2-hero{position:relative;width:100%;min-height:100vh;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding-bottom:96px;background:var(--cream)}
-.p2-hero-bg{--hero-pos:center 40%;position:absolute;top:0;left:0;right:0;height:max(78vh,480px);z-index:0;background:radial-gradient(ellipse 55% 80% at 28% 28%,#8a6a64 0%,transparent 55%),linear-gradient(135deg,#735451 0%,#4a1a18 55%,#400101 100%);background-size:cover;background-position:var(--hero-pos)}
-.p2-hero-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,rgba(40,1,1,.08) 0%,rgba(40,1,1,0) 55%,rgba(250,245,243,.75) 90%,var(--cream) 100%)}
-.p2-hero-content{position:relative;z-index:2;text-align:center;padding:30px 30px;animation:fadeUp 1s ease .3s both;border:1px solid rgba(233,216,208,.5);outline:1px solid rgba(233,216,208,.22);outline-offset:7px;margin:max(66vh,420px) 20px 0;background:radial-gradient(circle at 10% 24%,rgba(233,216,208,.9) 0 1px,transparent 1.6px),radial-gradient(circle at 88% 16%,rgba(233,216,208,.8) 0 1.2px,transparent 1.8px),radial-gradient(circle at 78% 82%,rgba(233,216,208,.7) 0 1px,transparent 1.6px),radial-gradient(circle at 20% 86%,rgba(233,216,208,.7) 0 1.2px,transparent 1.8px),linear-gradient(160deg,rgba(64,1,1,.95) 0%,rgba(115,84,81,.92) 100%);box-shadow:0 26px 50px -22px rgba(64,1,1,.65)}
-.hero-eyebrow{font-style:italic;font-size:15px;color:#e4d3cd;letter-spacing:.16em;margin-bottom:10px;display:block}
-.hero-name{font-family:'Great Vibes',cursive;font-size:clamp(72px,14vw,120px);color:#fff8f5;line-height:1;margin-bottom:8px;text-shadow:0 2px 24px rgba(0,0,0,.35)}
-.hero-debut{font-family:'Bodoni Moda',serif;font-style:italic;font-size:clamp(14px,2.5vw,20px);color:#e4d3cd;letter-spacing:.06em;margin-top:6px}
-.hero-rule{display:flex;align-items:center;justify-content:center;gap:14px;margin:18px 0}
-.hero-rule-line{width:80px;height:1px;background:linear-gradient(90deg,transparent,#cdb5ad)}
-.hero-rule-line.r{background:linear-gradient(270deg,transparent,#cdb5ad)}
-.hero-rule svg path{fill:#eadbd3}
-.hero-scroll-cue{position:absolute;bottom:36px;left:50%;transform:translateX(-50%);z-index:2;display:flex;flex-direction:column;align-items:center;gap:6px;animation:bobDown 2s ease-in-out infinite}
+.sky{position:fixed;inset:0;z-index:0;pointer-events:none}
+.wrap{position:relative;z-index:2;max-width:760px;margin:0 auto;padding:0 22px}
+.sec{padding-top:84px}
+.kicker{font-style:italic;font-size:15px;letter-spacing:.3em;color:var(--taupe);text-align:center;margin-bottom:30px;display:flex;align-items:center;gap:16px}
+.kicker::before,.kicker::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,transparent,rgba(166,135,124,.65))}
+.kicker::after{background:linear-gradient(270deg,transparent,rgba(166,135,124,.65))}
+.lbl{font-style:italic;font-size:15px;letter-spacing:.24em;color:var(--taupe);display:block}
+
+/* hero: arched portrait */
+.hero{position:relative;z-index:2;min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:64px 20px 120px;overflow:hidden}
+.hero-18{position:absolute;top:1%;left:50%;transform:translateX(-50%);font-family:'Italiana',serif;font-size:clamp(230px,54vw,470px);line-height:1;color:transparent;-webkit-text-stroke:1px rgba(166,135,124,.45);z-index:0;user-select:none;pointer-events:none}
+.arch{position:relative;z-index:1;width:min(80vw,380px);aspect-ratio:3/4;margin-top:14px}
+.arch::before{content:'';position:absolute;inset:-14px;border:1px solid rgba(166,135,124,.6);border-radius:999px 999px 0 0}
+.arch::after{content:'';position:absolute;inset:0;border-radius:999px 999px 0 0;background:linear-gradient(to bottom,transparent 52%,rgba(38,3,3,.94) 100%)}
+.arch-photo{--hero-pos:center 30%;position:absolute;inset:0;border-radius:999px 999px 0 0;background:linear-gradient(135deg,#735451,#400101);background-size:cover;background-position:var(--hero-pos);box-shadow:0 30px 70px -20px rgba(0,0,0,.75),0 0 70px rgba(166,135,124,.25)}
+.hero .bgmoon{z-index:1;top:5%;right:7%}
+.hero-text{position:relative;z-index:3;text-align:center;margin-top:-96px}
+.hero-eyebrow{font-style:italic;font-size:15px;color:#e4d3cd;letter-spacing:.2em;display:block;margin-bottom:6px}
+.hero-name{font-family:'Great Vibes',cursive;font-size:clamp(80px,17vw,132px);color:#fff8f5;line-height:1;text-shadow:0 2px 26px rgba(0,0,0,.5)}
+.hero-debut{font-family:'Bodoni Moda',serif;font-style:italic;font-size:clamp(14px,2.5vw,19px);color:#e4d3cd;letter-spacing:.06em;margin-top:8px}
+.hero-scroll-cue{position:absolute;bottom:30px;left:50%;transform:translateX(-50%);z-index:3;display:flex;flex-direction:column;align-items:center;gap:6px;animation:bobDown 2s ease-in-out infinite}
 @keyframes bobDown{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(8px)}}
-.hero-scroll-cue span{font-style:italic;font-size:12px;color:var(--oxblood);letter-spacing:.18em}
+.hero-scroll-cue span{font-style:italic;font-size:12px;color:#cdb5ad;letter-spacing:.18em}
 
-.p2-body{background:radial-gradient(ellipse 60% 22% at 12% 6%,rgba(166,135,124,.2),transparent 70%),radial-gradient(ellipse 60% 18% at 92% 30%,rgba(166,135,124,.14),transparent 70%),radial-gradient(ellipse 70% 14% at 10% 96%,rgba(166,135,124,.16),transparent 70%),var(--cream);padding:70px 20px 90px;position:relative}
-.p2-inner{max-width:680px;margin:0 auto;position:relative;z-index:2}
-.fdiv{display:flex;align-items:center;gap:16px;margin:36px auto;max-width:420px}
-.fdiv-line{flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--taupe) 50%,transparent);opacity:.7}
-.sec-eyebrow{font-family:'Bodoni Moda',serif;font-style:italic;font-size:24px;color:var(--oxblood);text-align:center;margin-bottom:26px;display:flex;align-items:center;gap:16px}
-.sec-eyebrow::before,.sec-eyebrow::after{content:'';flex:1;height:1px;background:var(--line)}
+/* date + time */
+.when{display:grid;grid-template-columns:1fr 1px 1fr;align-items:center;text-align:center}
+.when .vl{align-self:stretch;background:linear-gradient(180deg,transparent,rgba(166,135,124,.75),transparent)}
+.num{font-family:'Italiana',serif;font-size:clamp(76px,20vw,130px);line-height:1;color:#fff3ec;display:block;margin:4px 0}
+.sub{font-style:italic;font-size:17px;color:#cdb5ad;display:block}
 
-/* cards: double-line frame, arched icon */
-.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:22px}
-@media(max-width:480px){.info-grid{grid-template-columns:1fr}}
-.ic,.dress-card,.trad-card,.rsvp-notice{background:var(--paper);border:1px solid var(--line);padding:26px 18px;text-align:center;position:relative;outline:1px solid rgba(166,135,124,.28);outline-offset:-7px;box-shadow:0 10px 30px -18px rgba(64,1,1,.35)}
-.ic{overflow:hidden}
-.ic.full{grid-column:1/-1}
-.ic-icon{width:38px;height:46px;border-radius:19px 19px 4px 4px;background:var(--tint);display:flex;align-items:center;justify-content:center;margin:0 auto 12px;border:1px solid var(--line)}
-.ic-icon svg{width:16px;height:16px;stroke:var(--mulberry);fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
-.ic-lbl{font-style:italic;font-size:14px;color:var(--taupe);letter-spacing:.14em;margin-bottom:6px}
-.ic-val{font-family:'Bodoni Moda',serif;font-size:22px;color:var(--oxblood);line-height:1.4}
-.ic-val.big{font-family:'Italiana',serif;font-size:64px;line-height:1.05;color:var(--mulberry)}
-.ic-sub{font-style:italic;font-size:15px;color:var(--mulberry);margin-top:4px;line-height:1.6}
-
-.dress-card{margin-bottom:28px;padding:30px 22px}
-.swatches{display:flex;justify-content:center;gap:12px;margin-top:14px}
-.swatch{width:34px;height:34px;border-radius:50%;border:1px solid rgba(64,1,1,.25);box-shadow:0 2px 6px rgba(0,0,0,.12);transition:transform .2s ease}
-.swatch:hover{transform:scale(1.18)}
-.dress-note{margin-top:22px;padding-top:18px;border-top:1px dashed rgba(115,84,81,.45);font-style:italic;font-size:15px;color:var(--mulberry);line-height:1.7}
-.dress-note strong{font-style:normal;font-weight:600;color:var(--oxblood);letter-spacing:.06em;font-size:14px;display:block;margin-bottom:6px}
-
-/* traditions: two columns on wide screens, numbered rows */
-.trad-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
-@media(max-width:600px){.trad-grid{grid-template-columns:1fr}}
-.trad-group{margin:0}
-.trad-card{height:100%;padding:30px 24px 26px}
-.trad-title{font-family:'Bodoni Moda',serif;font-style:italic;font-size:21px;color:var(--oxblood);margin-bottom:16px}
-.trad-title::after{content:'';display:block;width:34px;height:1px;background:var(--taupe);margin:8px auto 0}
-.trad-list{list-style:none;counter-reset:n;text-align:left;padding:0 6px}
-.trad-list li{counter-increment:n;font-size:16px;color:var(--mulberry);line-height:1.5;padding:5px 0;border-bottom:1px solid rgba(166,135,124,.22);display:flex;gap:12px}
-.trad-list li::before{content:counter(n);font-family:'Bodoni Moda',serif;font-style:italic;font-size:13px;color:var(--taupe);min-width:20px;text-align:right;padding-top:2px}
-.trad-list li:last-child{border-bottom:none}
-
-/* NIGHT SECTION */
-.night{position:relative;overflow:hidden;width:100vw;margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw);padding:150px 20px 150px;background:linear-gradient(180deg,#faf5f3 0,rgba(250,245,243,0) 130px),linear-gradient(0deg,#faf5f3 0,rgba(250,245,243,0) 130px),radial-gradient(ellipse 60% 40% at 80% 20%,#5a1a18 0%,transparent 70%),linear-gradient(180deg,#400101 0%,#2a0303 55%,#400101 100%)}
-.night-in{position:relative;z-index:2;max-width:680px;margin:0 auto}
-.nightmoon{position:absolute;top:150px;right:6%;width:clamp(70px,12vw,120px);z-index:1;opacity:.6;filter:drop-shadow(0 0 18px rgba(233,216,208,.5));animation:floatMoon 8s ease-in-out infinite;pointer-events:none}
-.night .sec-eyebrow{color:#f3e6e1}
-.night .sec-eyebrow::before,.night .sec-eyebrow::after{background:rgba(166,135,124,.6)}
-.night .trad-card{background:rgba(255,253,252,.06);border-color:rgba(166,135,124,.55);outline-color:rgba(166,135,124,.25);box-shadow:none;backdrop-filter:blur(2px)}
-.night .trad-title{color:#f3e6e1}
-.night .trad-title::after{background:var(--taupe)}
-.night .trad-list li{color:#dcc9c2;border-bottom-color:rgba(166,135,124,.25)}
-.night .trad-list li::before{color:var(--taupe)}
-.venue-photo{width:100%;aspect-ratio:16/10;border-radius:120px 120px 4px 4px;overflow:hidden;margin:14px 0;background:var(--tint);border:1px solid var(--line)}
+/* venue */
+.venue{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;margin-top:76px}
+.venue.solo{grid-template-columns:1fr}
+@media(max-width:640px){.venue{grid-template-columns:1fr}}
+.venue-photo{aspect-ratio:4/5;border-radius:999px 999px 0 0;overflow:hidden;border:1px solid rgba(166,135,124,.6);outline:1px solid rgba(166,135,124,.25);outline-offset:8px;background:rgba(115,84,81,.3);margin:8px}
 .venue-photo img{width:100%;height:100%;object-fit:cover;display:block}
+.venue-info{text-align:center}
+.vname{font-family:'Bodoni Moda',serif;font-size:clamp(26px,5vw,34px);color:#fff3ec;line-height:1.25;margin:8px 0 2px}
+.venue .location-link{display:inline-block;margin-top:20px;padding:10px 26px;border:1px solid var(--taupe);border-radius:40px;color:#f3e6e1;font-size:15px;text-decoration:none;font-style:italic;letter-spacing:.06em;transition:all .3s ease}
+.venue .location-link:hover{background:var(--taupe);color:#260303}
 
-.photo-break{position:relative;width:100vw;margin-left:calc(50% - 50vw);margin-right:calc(50% - 50vw);height:340px;background-size:cover;background-position:center;margin-top:8px;margin-bottom:44px;z-index:1}
-.photo-break::before{content:'';position:absolute;top:0;left:0;right:0;height:60px;background:linear-gradient(to bottom,var(--cream) 0%,transparent 100%)}
-.photo-break::after{content:'';position:absolute;bottom:0;left:0;right:0;height:60px;background:linear-gradient(to top,var(--cream) 0%,transparent 100%)}
+/* theme banner */
+.theme{margin-top:84px;text-align:center;padding:46px 16px;border-top:1px solid rgba(166,135,124,.4);border-bottom:1px solid rgba(166,135,124,.4)}
+.theme-name{font-family:'Great Vibes',cursive;font-size:clamp(54px,13vw,96px);color:#fff3ec;line-height:1.1;margin-top:6px}
+.orn{filter:brightness(1.9)}
+
+/* dress code */
+.dress{display:grid;grid-template-columns:1fr 1fr;border:1px solid rgba(166,135,124,.45);border-radius:6px;background:rgba(115,84,81,.16);overflow:hidden}
+.dcol{padding:34px 18px;text-align:center}
+.dcol+.dcol{border-left:1px solid rgba(166,135,124,.35)}
+@media(max-width:520px){.dress{grid-template-columns:1fr}.dcol+.dcol{border-left:none;border-top:1px solid rgba(166,135,124,.35)}}
+.dwho{font-family:'Great Vibes',cursive;font-size:44px;color:#fff3ec;line-height:1.1}
+.dwhat{font-size:17px;color:#e4d3cd;font-style:italic}
+.palette{text-align:center;margin-top:34px}
+.swatches{display:flex;justify-content:center;margin:20px 0 6px}
+.swatch{width:50px;height:50px;border-radius:50%;margin-left:-12px;border:2px solid #cdb5ad;box-shadow:0 6px 16px rgba(0,0,0,.5);transition:transform .25s ease}
+.swatch:first-child{margin-left:0}
+.swatch:hover{transform:translateY(-8px)}
+.dress-note{margin:26px auto 0;max-width:520px;font-style:italic;font-size:16px;color:#cdb5ad;line-height:1.75}
+.dress-note strong{display:block;font-style:normal;letter-spacing:.12em;color:#fff3ec;font-size:14px;margin-bottom:6px;font-weight:500}
+
+.photo-break{position:relative;width:100vw;margin:84px calc(50% - 50vw) 0;height:340px;background-size:cover;background-position:center;z-index:1}
+.photo-break::before,.photo-break::after{content:'';position:absolute;left:0;right:0;height:90px}
+.photo-break::before{top:0;background:linear-gradient(to bottom,#260303,transparent)}
+.photo-break::after{bottom:0;background:linear-gradient(to top,#260303,transparent)}
 @media(min-width:900px){.photo-break{height:560px}}
 @media(min-width:1300px){.photo-break{height:680px}}
 
-.rsvp-notice{background:linear-gradient(160deg,#fffdfc 0%,#f3e9e6 100%);padding:30px 24px;margin:8px 0 24px}
-.rsvp-msg{font-style:italic;font-size:17px;color:var(--oxblood);line-height:1.8;margin-bottom:14px}
-.rsvp-deadline{display:inline-block;font-family:'Bodoni Moda',serif;font-style:italic;font-size:17px;color:var(--mulberry);border:1px solid var(--taupe);border-radius:2px;padding:8px 26px;margin-bottom:16px;background:rgba(255,255,255,.6)}
-.rsvp-link{display:inline-block;font-style:italic;font-size:16px;color:#fff;background:var(--oxblood);letter-spacing:.1em;text-decoration:none;padding:12px 34px;border-radius:2px;transition:all .3s ease;box-shadow:0 6px 18px rgba(64,1,1,.25)}
-.rsvp-link:hover{background:var(--mulberry);transform:translateY(-2px)}
+/* 18 traditions: arched cards */
+.trads{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+@media(max-width:620px){.trads{grid-template-columns:1fr}}
+.tc{border:1px solid rgba(166,135,124,.5);background:linear-gradient(180deg,rgba(115,84,81,.3),rgba(115,84,81,.07));border-radius:160px 160px 8px 8px;padding:38px 24px 26px;text-align:center}
+.tc-n{font-family:'Italiana',serif;font-size:84px;line-height:1;color:transparent;-webkit-text-stroke:1px #cdb5ad;display:block}
+.tc-t{font-family:'Bodoni Moda',serif;font-style:italic;font-size:23px;color:#fff3ec;margin:-8px 0 18px}
+.tc-t small{display:block;font-family:'Spectral',serif;font-size:13px;color:var(--taupe);letter-spacing:.14em;margin-top:2px}
+.tc ol{list-style:none;counter-reset:n;text-align:left;padding:0 4px}
+.tc li{counter-increment:n;display:flex;gap:12px;padding:6px 0;border-bottom:1px solid rgba(166,135,124,.22);font-size:16px;color:#e9d8d0;line-height:1.45}
+.tc li::before{content:counter(n,decimal-leading-zero);font-family:'Italiana',serif;font-size:15px;color:var(--taupe);min-width:24px;padding-top:1px}
+.tc li:last-child{border-bottom:none}
 
-.inv-footer{text-align:center;padding-top:32px;border-top:1px solid var(--line);margin-top:18px}
-.footer-name{font-family:'Great Vibes',cursive;font-size:42px;color:var(--oxblood);display:block;margin:8px 0 6px}
-.footer-contact{font-size:13px;color:var(--taupe);display:block;margin-top:4px}
+/* GALLERY */
+.gallery{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.gal{position:relative;overflow:hidden;aspect-ratio:4/5;border:1px solid rgba(166,135,124,.5);background:linear-gradient(160deg,rgba(115,84,81,.3),rgba(64,1,1,.35));cursor:zoom-in}
+.gal::before{content:'✦';position:absolute;inset:0;display:grid;place-items:center;color:rgba(166,135,124,.45);font-size:26px}
+.gal img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .8s ease}
+.gal:hover img{transform:scale(1.05)}
+.gal.arch2{border-radius:999px 999px 6px 6px}
+.gal.tall{aspect-ratio:3/4}
+.gal.wide{grid-column:1/-1;aspect-ratio:16/9}
+.lb{position:fixed;inset:0;z-index:5000;background:rgba(20,1,1,.93);display:none;align-items:center;justify-content:center;padding:20px;cursor:zoom-out}
+.lb.on{display:flex}
+.lb img{max-width:100%;max-height:100%;border:1px solid rgba(166,135,124,.6);box-shadow:0 20px 60px rgba(0,0,0,.6)}
+
+/* RSVP */
+.rsvp{position:relative;overflow:hidden;text-align:center;padding:54px 26px;border:1px solid rgba(166,135,124,.65);border-radius:8px;background:radial-gradient(circle at 50% 0%,rgba(166,135,124,.38),transparent 60%),linear-gradient(160deg,#735451 0%,#400101 100%);box-shadow:0 30px 60px -30px rgba(0,0,0,.85)}
+.rsvp-t{font-family:'Great Vibes',cursive;font-size:clamp(46px,10vw,64px);color:#fff3ec;line-height:1.1;margin:6px 0 12px}
+.rsvp-msg{font-style:italic;font-size:17px;color:#eadbd3;line-height:1.8;margin-bottom:18px}
+.rsvp-deadline{display:inline-block;font-family:'Bodoni Moda',serif;font-style:italic;font-size:17px;color:#fff3ec;border:1px solid rgba(233,216,208,.6);border-radius:40px;padding:8px 26px;margin-bottom:22px}
+.rsvp-link{display:inline-block;font-style:italic;font-size:16px;color:#400101;background:#f3e6e1;letter-spacing:.1em;text-decoration:none;padding:13px 38px;border-radius:40px;transition:all .3s ease;box-shadow:0 8px 22px rgba(0,0,0,.35)}
+.rsvp-link:hover{background:#fff;transform:translateY(-2px)}
+
+/* footer */
+.foot{text-align:center;padding-top:90px}
+.footer-name{font-family:'Great Vibes',cursive;font-size:clamp(52px,12vw,76px);color:#fff3ec;display:block;margin:6px 0 10px;line-height:1.1}
+.credit{text-align:center;font-style:italic;font-size:13px;color:rgba(205,181,173,.7);letter-spacing:.1em;padding:18px 0 22px;position:relative;z-index:2}
 
 #musicBtn{position:fixed;bottom:28px;right:28px;z-index:2000;width:46px;height:46px;border-radius:50%;background:rgba(255,253,252,.94);border:1px solid var(--taupe);cursor:pointer;display:none;align-items:center;justify-content:center;backdrop-filter:blur(8px);box-shadow:0 4px 18px rgba(64,1,1,.2);transition:all .3s ease;font-size:20px}
 #musicBtn:hover{transform:scale(1.08)}
@@ -269,7 +291,7 @@ body{width:100%;background:var(--cream);overflow-x:hidden;font-family:'Spectral'
         <g id="ticks"></g><g id="nums"></g>
         <g class="hand hr"><line x1="150" y1="156" x2="150" y2="92" stroke="#eadbd3" stroke-width="5" stroke-linecap="round"/></g>
         <g class="hand mn"><line x1="150" y1="162" x2="150" y2="58" stroke="#eadbd3" stroke-width="3" stroke-linecap="round"/></g>
-        <g class="sec"><line x1="150" y1="168" x2="150" y2="50" stroke="#A6877C" stroke-width="1"/></g>
+        <g class="sechand"><line x1="150" y1="168" x2="150" y2="50" stroke="#A6877C" stroke-width="1"/></g>
         <circle cx="150" cy="150" r="8" fill="#A6877C"/><circle cx="150" cy="150" r="3" fill="#400101"/>
       </svg>
       <div class="clock-shadow"></div>
@@ -296,69 +318,56 @@ body{width:100%;background:var(--cream);overflow-x:hidden;font-family:'Spectral'
 
 <!-- SCREEN 4: MAIN INVITATION -->
 <div id="sMain" class="hidden">
-  <div class="p2-hero">
-    <div class="p2-hero-bg" id="heroBg"></div>
-    <div class="p2-hero-content">
+  <div class="sky" id="sky"></div>
+
+  <header class="hero">
+    <div class="hero-18" aria-hidden="true">18</div>
+    <svg class="bgmoon" viewBox="0 0 200 200"><mask id="cm7"><rect width="200" height="200" fill="#fff"/><circle cx="138" cy="80" r="68" fill="#000"/></mask><circle cx="98" cy="104" r="78" fill="#eadbd3" mask="url(#cm7)"/></svg>
+    <div class="arch"><div class="arch-photo" id="heroBg"></div></div>
+    <div class="hero-text">
       <span class="hero-eyebrow">cordially invites you to celebrate</span>
       <h1 class="hero-name">Martina</h1>
-      <div class="hero-rule">
-        <div class="hero-rule-line"></div>
-        <svg width="18" height="18" viewBox="0 0 20 20" fill="none"><path d="M10 2 L10.9 7.5 L16 7.5 L11.8 10.8 L13.1 16 L10 12.8 L6.9 16 L8.2 10.8 L4 7.5 L9.1 7.5 Z" fill="rgba(255,240,236,.8)"/></svg>
-        <div class="hero-rule-line r"></div>
-      </div>
       <p class="hero-debut">on the occasion of her eighteenth birthday</p>
     </div>
     <div class="hero-scroll-cue">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#400101" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#cdb5ad" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
       <span>scroll</span>
     </div>
-  </div>
+  </header>
 
-  <div class="p2-body">
-    <div class="p2-inner">
-      <div class="fdiv">
-        <div class="fdiv-line"></div>
-        <svg width="62" height="26" viewBox="0 0 70 28"><use href="#orn"/></svg>
-        <div class="fdiv-line"></div>
+  <main class="wrap">
+    <section class="sec" style="padding-top:30px">
+      <p class="kicker">save the date</p>
+      <div class="when">
+        <div><span class="lbl">Thursday</span><span class="num">12</span><span class="sub">November 2026</span></div>
+        <div class="vl"></div>
+        <div><span class="lbl">Time</span><span class="num">5:00</span><span class="sub">in the evening</span></div>
       </div>
 
-      <div class="info-grid">
-        <div class="ic">
-          <div class="ic-icon"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
-          <p class="ic-lbl">Date</p>
-          <p class="ic-val big">12</p>
-          <p class="ic-sub">Thursday, November 2026</p>
-        </div>
-        <div class="ic">
-          <div class="ic-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><polyline points="12 6 12 12 16 14"/></svg></div>
-          <p class="ic-lbl">Time</p>
-          <p class="ic-val big">5:00</p>
-          <p class="ic-sub">in the evening</p>
-        </div>
-        <div class="ic full">
-          <div class="ic-icon"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg></div>
-          <p class="ic-lbl">Venue</p>
-          <p class="ic-val">Kusina Nen Laki Digno</p>
-          <p class="ic-sub" style="margin-top:0">Annex Hall</p>
-          <div class="venue-photo">
-            <img src="venue.png" alt="Kusina Nen Laki Digno Annex Hall" onerror="this.parentElement.style.display='none'">
-          </div>
-          <p class="ic-sub">
-            <a href="https://maps.google.com/?q=Kusina+Nen+Laki+Digno" target="_blank" class="location-link">- Click Me to View Location -</a>
-          </p>
-        </div>
-        <div class="ic full">
-          <div class="ic-icon"><svg viewBox="0 0 24 24"><path d="M12 2l2.5 6.5L21 9l-5 4.5L17.5 21 12 17l-5.5 4L8 13.5 3 9l6.5-0.5z"/></svg></div>
-          <p class="ic-lbl">Theme</p>
-          <p class="ic-val">Midnight Allure</p>
+      <div class="venue">
+        <div class="venue-photo"><img src="venue.png" alt="Kusina Nen Laki Digno Annex Hall" onerror="this.parentElement.style.display='none';this.closest('.venue').classList.add('solo')"></div>
+        <div class="venue-info">
+          <span class="lbl">Venue</span>
+          <p class="vname">Kusina Nen Laki Digno</p>
+          <p class="sub">Annex Hall</p>
+          <a href="https://maps.google.com/?q=Kusina+Nen+Laki+Digno" target="_blank" class="location-link">View Location</a>
         </div>
       </div>
 
-      <div class="dress-card">
-        <p class="ic-lbl" style="margin-bottom:8px;">Guests' Dress Code</p>
-        <p class="ic-val" style="font-size:20px;">Girls — Semi-Formal Dress</p>
-        <p class="ic-val" style="font-size:20px;margin-top:4px;">Boys — Polo / Long-Sleeved Polo</p>
-        <p class="ic-lbl" style="margin:16px 0 8px;">Color Coding</p>
+      <div class="theme">
+        <span class="lbl">Theme</span>
+        <p class="theme-name">Midnight Allure</p>
+      </div>
+    </section>
+
+    <section class="sec">
+      <p class="kicker">dress code</p>
+      <div class="dress">
+        <div class="dcol"><p class="dwho">Girls</p><p class="dwhat">Semi-Formal Dress</p></div>
+        <div class="dcol"><p class="dwho">Boys</p><p class="dwhat">Polo / Long-Sleeved Polo</p></div>
+      </div>
+      <div class="palette">
+        <span class="lbl">Color Coding</span>
         <div class="swatches">
           <div class="swatch" style="background:#0b0d10;" title="Black"></div>
           <div class="swatch" style="background:#242830;" title="Charcoal"></div>
@@ -366,80 +375,49 @@ body{width:100%;background:var(--cream);overflow-x:hidden;font-family:'Spectral'
           <div class="swatch" style="background:#c8cad6;" title="Silver"></div>
           <div class="swatch" style="background:#ffffff;" title="White"></div>
         </div>
-        <div class="dress-note">
-          <strong>Please Note</strong>
-          We kindly ask all guests to observe the dress code and color motif above to help complete the theme of the celebration. Your effort means so much to us!
-        </div>
+        <div class="dress-note"><strong>Please Note</strong>We kindly ask all guests to observe the dress code and color motif above to help complete the theme of the celebration. Your effort means so much to us!</div>
       </div>
+    </section>
+    <section class="sec">
+      <p class="kicker">moments</p>
+      <div class="gallery">
+        <figure class="gal arch2"><img data-base="gallery-1" alt="Martina photo 1"></figure><figure class="gal tall"><img data-base="gallery-2" alt="Martina photo 2"></figure><figure class="gal wide"><img data-base="gallery-3" alt="Martina photo 3"></figure><figure class="gal tall"><img data-base="gallery-4" alt="Martina photo 4"></figure><figure class="gal arch2"><img data-base="gallery-5" alt="Martina photo 5"></figure><figure class="gal wide"><img data-base="gallery-6" alt="Martina photo 6"></figure>
+      </div>
+    </section>
+  </main>
 
-      <div class="photo-break" style="background-image:url('bg-dress-code.jpeg');margin-bottom:0;"></div>
+  <div class="photo-break" style="background-image:url('bg-dress-code.jpeg');"></div>
 
-      <section class="night" id="night"><svg class="nightmoon" viewBox="0 0 200 200"><mask id="cm6"><rect width="200" height="200" fill="#fff"/><circle cx="138" cy="80" r="68" fill="#000"/></mask><circle cx="98" cy="104" r="78" fill="#eadbd3" mask="url(#cm6)"/></svg><div class="night-in"><p class="sec-eyebrow">18 Traditions</p>
+  <div class="wrap">
+    <section class="sec">
+      <p class="kicker">18 traditions</p>
+      <div class="trads">
+        <div class="tc"><span class="tc-n">18</span><p class="tc-t">Roses</p><ol><li>Ranjith Luna</li><li>Matthew Paramio</li><li>Sanjie Gatchalian</li><li>Gerome De Vera</li><li>Tristhan Rivera</li><li>Patrick Aquino</li><li>Kenneth Siapno</li><li>Mr. Jeff Malong</li><li>Renzo Luna</li><li>Josh Obedoza</li><li>Mr. Manny</li><li>Mr. Roldan Luna</li><li>Mr. Robert Luna</li><li>Mr. Ricky Luna</li><li>Ronald Luna</li><li>Mr. Randy Luna</li><li>Mr. Rhem Siapno</li><li>Rannie Luna</li></ol></div><div class="tc"><span class="tc-n">18</span><p class="tc-t">Treasures</p><ol><li>Jaenna Arias</li><li>Heart Dela Cruz</li><li>Stephanie Diocares</li><li>Mikhaella Meneses</li><li>Arthea Rosario</li><li>Noreen Jaramillo</li><li>Estephanie Mabajen</li><li>Sophia Cabrito</li><li>Aiden Tarlit</li><li>Heizel Berk</li><li>Mrs. Ryka Narvante-Halili</li><li>Ronalyn Luna</li><li>Rhesalyn Luna</li><li>Mrs. Paulyn Luna</li><li>Mrs. Shirley Luna</li><li>Mrs. Jovy Obedoza</li><li>Mrs. Jovencia Obedoza</li><li>Maureen Joy Paldeng</li><li>Mrs. CJ Baguis</li><li>Joan Luna</li></ol></div><div class="tc"><span class="tc-n">18</span><p class="tc-t">Books</p><ol><li>Angelica Luna</li><li>Juliana Lalimo</li><li>Leana Ramos</li><li>Girlie Mabajen</li><li>Vinnese Fernandez</li><li>Julianna Clata</li><li>Lorraine Lagatao</li><li>Barbie Laguerta</li><li>Jewel Ulanday</li><li>Mya Cabansag</li><li>Sophia Fernandez</li><li>Sophea Viray</li><li>Cyrel Columbres</li><li>Ashley Badinas</li><li>Leana Visperas</li><li>Hanna Ferrer</li><li>Timothy Diaz</li><li>Pauleen Calicdan</li><li>Ms. Marlyn Suarez</li><li>Jennica De Vera</li></ol></div><div class="tc"><span class="tc-n">18</span><p class="tc-t">Blessings<small>(Blue Bills)</small></p><ol><li>Mrs. Josephine Paldeng</li><li>Mrs. Lina Obedoza</li><li>Mr. Mauro Paldeng</li><li>Mr. Jr. Obedoza</li><li>Mrs. Kendy Sarmiento</li><li>Mr. Nestor Bonrostro</li><li>Mr. Jay Siapno</li><li>Ms. Cheila Abuibag</li><li>Mrs. Jesibeth Salazar</li><li>Mrs. Evelyn Obedoza</li><li>Doc. Rigor Obedoza</li><li>Mrs. Judith Millaflores</li><li>Ms. Rubilyn Panis</li><li>Mr. Rolly Bermuedez</li><li>Ms. Chelzia Calixtro</li><li>Mrs. Delia Talpis</li><li>Mrs. Lorna De Vera</li><li>Rowena Luna Onuki</li></ol></div>
+      </div>
+    </section>
 
-      <div class="trad-grid">
-      <div class="trad-group"><div class="trad-card">
-        <p class="trad-title">18 Roses</p>
-        <ol class="trad-list">
-          <li>Ranjith Luna</li><li>Matthew Paramio</li><li>Sanjie Gatchalian</li><li>Gerome De Vera</li><li>Tristhan Rivera</li><li>Patrick Aquino</li><li>Kenneth Siapno</li><li>Mr. Jeff Malong</li><li>Renzo Luna</li><li>Josh Obedoza</li><li>Mr. Manny</li><li>Mr. Roldan Luna</li><li>Mr. Robert Luna</li><li>Mr. Ricky Luna</li><li>Ronald Luna</li><li>Mr. Randy Luna</li><li>Mr. Rhem Siapno</li><li>Rannie Luna</li>
-        </ol>
-      </div></div>
-
-      <div class="trad-group"><div class="trad-card">
-        <p class="trad-title">18 Treasures</p>
-        <ol class="trad-list">
-          <li>Jaenna Arias</li><li>Heart Dela Cruz</li><li>Stephanie Diocares</li><li>Mikhaella Meneses</li><li>Arthea Rosario</li><li>Noreen Jaramillo</li><li>Estephanie Mabajen</li><li>Sophia Cabrito</li><li>Aiden Tarlit</li><li>Heizel Berk</li><li>Mrs. Ryka Narvante-Halili</li><li>Ronalyn Luna</li><li>Rhesalyn Luna</li><li>Mrs. Paulyn Luna</li><li>Mrs. Shirley Luna</li><li>Mrs. Jovy Obedoza</li><li>Mrs. Jovencia Obedoza</li><li>Maureen Joy Paldeng</li><li>Mrs. CJ Baguis</li><li>Joan Luna</li>
-        </ol>
-      </div></div>
-
-      <div class="trad-group"><div class="trad-card">
-        <p class="trad-title">18 Books</p>
-        <ol class="trad-list">
-          <li>Angelica Luna</li><li>Juliana Lalimo</li><li>Leana Ramos</li><li>Girlie Mabajen</li><li>Vinnese Fernandez</li><li>Julianna Clata</li><li>Lorraine Lagatao</li><li>Barbie Laguerta</li><li>Jewel Ulanday</li><li>Mya Cabansag</li><li>Sophia Fernandez</li><li>Sophea Viray</li><li>Cyrel Columbres</li><li>Ashley Badinas</li><li>Leana Visperas</li><li>Hanna Ferrer</li><li>Timothy Diaz</li><li>Pauleen Calicdan</li><li>Ms. Marlyn Suarez</li><li>Jennica De Vera</li>
-        </ol>
-      </div></div>
-
-      <div class="trad-group"><div class="trad-card">
-        <p class="trad-title">18 Blessings (Blue Bills)</p>
-        <ol class="trad-list">
-          <li>Mrs. Josephine Paldeng</li><li>Mrs. Lina Obedoza</li><li>Mr. Mauro Paldeng</li><li>Mr. Jr. Obedoza</li><li>Mrs. Kendy Sarmiento</li><li>Mr. Nestor Bonrostro</li><li>Mr. Jay Siapno</li><li>Ms. Cheila Abuibag</li><li>Mrs. Jesibeth Salazar</li><li>Mrs. Evelyn Obedoza</li><li>Doc. Rigor Obedoza</li><li>Mrs. Judith Millaflores</li><li>Ms. Rubilyn Panis</li><li>Mr. Rolly Bermuedez</li><li>Ms. Chelzia Calixtro</li><li>Mrs. Delia Talpis</li><li>Mrs. Lorna De Vera</li><li>Rowena Luna Onuki</li>
-        </ol>
-      </div></div>
-      </div></div></section>
-    </div>
-
-    <div class="p2-inner">
-      <p class="sec-eyebrow" style="margin-bottom:16px;margin-top:52px;">RSVP</p>
-      <div class="rsvp-notice">
-        <p class="ic-lbl">Kindly Confirm Your Attendance</p>
-        <p class="rsvp-msg">
-          Your presence means the world to us! To help us prepare and finalize<br>
-          the seating and catering, please take a moment to fill out our RSVP form.
-        </p>
+    <section class="sec">
+      <div class="rsvp">
+        <span class="lbl">Kindly Confirm Your Attendance</span>
+        <p class="rsvp-t">RSVP</p>
+        <p class="rsvp-msg">Your presence means the world to us! To help us prepare and finalize<br>the seating and catering, please take a moment to fill out our RSVP form.</p>
         <!-- TODO: set your real RSVP deadline below -->
-        <p class="rsvp-deadline">Please RSVP on or before <em>November 5</em></p>
-        <br>
+        <p class="rsvp-deadline">Please RSVP on or before <em>November 5</em></p><br>
         <a href="https://forms.gle/7gpoXByTqNNV3JGeA" class="rsvp-link" target="_blank">Fill Up RSVP Form</a>
       </div>
+    </section>
 
-      <div class="inv-footer">
-        <p style="font-style:italic;font-size:16px;color:var(--taupe);">With love,</p>
-        <span class="footer-name">Martina &amp; Family</span>
-        <span class="footer-contact"></span>
-        <div class="fdiv" style="margin-top:30px;">
-          <div class="fdiv-line"></div>
-          <svg width="62" height="26" viewBox="0 0 70 28"><use href="#orn"/></svg>
-          <div class="fdiv-line"></div>
-        </div>
-        <p style="font-style:italic;font-size:14px;color:var(--mulberry);letter-spacing:.12em;">The honour of your presence is requested</p>
-      </div>
-
-      <div class="photo-break" style="background-image:url('bg-footer.jpeg');margin-bottom:0;"></div>
-
-      <p style="text-align:center;font-style:italic;font-size:13px;color:rgba(115,84,81,.6);letter-spacing:.1em;padding:18px 0 8px;">
-        Designed &amp; Developed by Hezron Sison
-      </p>
-    </div>
+    <section class="foot">
+      <span class="lbl">With love,</span>
+      <span class="footer-name">Martina &amp; Family</span>
+      <svg class="orn" width="70" height="28" viewBox="0 0 70 28"><use href="#orn"/></svg>
+      <p class="lbl" style="margin-top:12px;font-size:14px;letter-spacing:.14em">The honour of your presence is requested</p>
+    </section>
   </div>
+
+  <div class="photo-break" style="background-image:url('bg-footer.jpeg');margin-top:70px;margin-bottom:0;"></div>
+  <p class="credit">Designed &amp; Developed by Hezron Sison</p>
+  <div class="lb" id="lb"><img id="lbImg" alt=""></div>
 </div>
 
 <script>
@@ -452,7 +430,9 @@ function resizeCanvas(){canvas.width=window.innerWidth;canvas.height=window.inne
 resizeCanvas();window.addEventListener('resize',resizeCanvas);
 function mkPetal(){return{x:Math.random()*canvas.width,y:-25,size:6+Math.random()*14,color:COLORS[Math.floor(Math.random()*COLORS.length)],vy:.25+Math.random()*.5,vx:-.2+Math.random()*.4,angle:Math.random()*Math.PI*2,angV:(Math.random()-.5)*.014,sway:Math.random()*Math.PI*2,swayV:.004+Math.random()*.009,swayA:.3+Math.random()*1.1,opacity:.35+Math.random()*.45,type:Math.floor(Math.random()*3)}}
 function drawPetal(p){ctx.save();ctx.translate(p.x,p.y);ctx.rotate(p.angle);ctx.globalAlpha=p.opacity;ctx.fillStyle=p.color;ctx.beginPath();if(p.type===0){ctx.ellipse(0,0,p.size*.36,p.size,0,0,Math.PI*2)}else if(p.type===1){ctx.moveTo(0,-p.size);ctx.bezierCurveTo(p.size*.75,-p.size*.5,p.size*.75,p.size*.35,0,p.size*.5);ctx.bezierCurveTo(-p.size*.75,p.size*.35,-p.size*.75,-p.size*.5,0,-p.size)}else{ctx.ellipse(0,0,p.size*.48,p.size*.84,0,0,Math.PI*2)}ctx.fill();ctx.restore()}
-(function animatePetals(){ctx.clearRect(0,0,canvas.width,canvas.height);if(Math.random()<.07&&petals.length<45)petals.push(mkPetal());petals=petals.filter(p=>p.y<canvas.height+30);petals.forEach(p=>{p.sway+=p.swayV;p.x+=p.vx+Math.sin(p.sway)*p.swayA;p.y+=p.vy;p.angle+=p.angV;drawPetal(p)});requestAnimationFrame(animatePetals)})();
+let petalsOn=true;
+function animatePetals(){if(!petalsOn)return;ctx.clearRect(0,0,canvas.width,canvas.height);if(Math.random()<.07&&petals.length<45)petals.push(mkPetal());petals=petals.filter(p=>p.y<canvas.height+30);petals.forEach(p=>{p.sway+=p.swayV;p.x+=p.vx+Math.sin(p.sway)*p.swayA;p.y+=p.vy;p.angle+=p.angV;drawPetal(p)});requestAnimationFrame(animatePetals)}
+animatePetals();
 
 /* POEM SLIDESHOW */
 function initPoemSlideshow(){
@@ -503,7 +483,7 @@ function transitionTo(fromId,toId,cb,color){
   setTimeout(()=>{
     if(fromId){const f=document.getElementById(fromId);f.classList.add('hidden');if(fromId==='sMain')f.style.display='none'}
     const t=document.getElementById(toId);
-    if(toId==='sMain'){t.style.display='block';t.classList.remove('hidden')}
+    if(toId==='sMain'){petalsOn=false;canvas.style.display='none';t.style.display='block';t.classList.remove('hidden')}
     else{t.classList.remove('hidden')}
     window.scrollTo(0,0);
     ov.style.opacity='0';ov.style.pointerEvents='none';
@@ -584,16 +564,36 @@ function tryBg(src,id){
 }
 tryBg('main-picture.jpeg','heroBg');
 
-/* STARS IN NIGHT SECTION */
+/* STARFIELD (main invitation) */
 (function(){
-  const host=document.getElementById('night');
-  if(!host)return;
-  for(let i=0;i<46;i++){
+  const host=document.getElementById('sky');
+  if(host)for(let i=0;i<70;i++){
     const t=document.createElement('span');t.className='tw';
-    const z=4+Math.random()*8;
-    t.style.cssText=`left:${Math.random()*100}%;top:${12+Math.random()*76}%;width:${z}px;height:${z}px;background:#cdb5ad;animation-delay:${Math.random()*3.5}s;animation-duration:${2.5+Math.random()*3}s`;
+    const z=3+Math.random()*8;
+    t.style.cssText=`left:${Math.random()*100}%;top:${Math.random()*100}%;width:${z}px;height:${z}px;background:#cdb5ad;animation-delay:${Math.random()*3.5}s;animation-duration:${2.5+Math.random()*3}s`;
     host.appendChild(t);
   }
+})();
+
+/* GALLERY: loads gallery-1 ... gallery-6 (.jpg/.jpeg/.png/.webp) + lightbox */
+const HIDE_EMPTY_GALLERY=false; /* set true to remove empty frames */
+(function(){
+  const exts=['jpg','jpeg','png','webp'];
+  document.querySelectorAll('.gal img').forEach(img=>{
+    let i=0;const base=img.dataset.base;
+    function next(){
+      if(i>=exts.length){const f=img.closest('.gal');img.remove();if(HIDE_EMPTY_GALLERY&&f)f.remove();return}
+      img.src=base+'.'+exts[i++];
+    }
+    img.onerror=next;next();
+    img.closest('.gal').addEventListener('click',()=>{
+      if(!img.isConnected)return;
+      document.getElementById('lbImg').src=img.src;
+      document.getElementById('lb').classList.add('on');
+    });
+  });
+  const lb=document.getElementById('lb');
+  if(lb)lb.addEventListener('click',()=>lb.classList.remove('on'));
 })();
 </script>
 </body>
