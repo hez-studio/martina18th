@@ -6,7 +6,6 @@
 <title>You're Invited — Martina @18</title>
 <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;0,500;1,400;1,500&family=Spectral:ital,wght@0,300;0,400;1,300;1,400&family=Great+Vibes&family=Italiana&display=swap" rel="stylesheet">
 <link rel="preload" as="image" href="main-picture.jpeg">
-<link rel="preload" as="image" href="bg-dress-code.jpeg">
 <link rel="preload" as="image" href="bg-footer.jpeg">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -140,9 +139,9 @@ body{width:100%;background:var(--cream);overflow-x:hidden;font-family:'Spectral'
 .arch::after{content:'';position:absolute;inset:0;border-radius:999px 999px 0 0;background:linear-gradient(to bottom,transparent 52%,rgba(38,3,3,.94) 100%)}
 .arch-photo{--hero-pos:center 30%;position:absolute;inset:0;border-radius:999px 999px 0 0;background:linear-gradient(135deg,#735451,#400101);background-size:cover;background-position:var(--hero-pos);box-shadow:0 30px 70px -20px rgba(0,0,0,.75),0 0 70px rgba(166,135,124,.25)}
 .hero .bgmoon{z-index:1;top:5%;right:7%}
-.hero-text{position:relative;z-index:3;text-align:center;margin-top:-96px}
-.hero-eyebrow{font-style:italic;font-size:15px;color:#e4d3cd;letter-spacing:.2em;display:block;margin-bottom:6px}
-.hero-name{font-family:'Great Vibes',cursive;font-size:clamp(80px,17vw,132px);color:#fff8f5;line-height:1;text-shadow:0 2px 26px rgba(0,0,0,.5)}
+.hero-text{position:relative;z-index:3;text-align:center;margin-top:-110px}
+.hero-eyebrow{font-style:italic;font-size:15px;color:#e4d3cd;letter-spacing:.2em;display:block;margin-bottom:34px}
+.hero-name{font-family:'Great Vibes',cursive;font-weight:400;font-size:clamp(80px,17vw,132px);color:#fff8f5;line-height:1.15;text-shadow:0 4px 24px rgba(0,0,0,.45)}
 .hero-debut{font-family:'Bodoni Moda',serif;font-style:italic;font-size:clamp(14px,2.5vw,19px);color:#e4d3cd;letter-spacing:.06em;margin-top:8px}
 .hero-scroll-cue{position:absolute;bottom:30px;left:50%;transform:translateX(-50%);z-index:3;display:flex;flex-direction:column;align-items:center;gap:6px;animation:bobDown 2s ease-in-out infinite}
 @keyframes bobDown{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(8px)}}
@@ -216,6 +215,13 @@ body{width:100%;background:var(--cream);overflow-x:hidden;font-family:'Spectral'
 .lb{position:fixed;inset:0;z-index:5000;background:rgba(20,1,1,.93);display:none;align-items:center;justify-content:center;padding:20px;cursor:zoom-out}
 .lb.on{display:flex}
 .lb img{max-width:100%;max-height:100%;border:1px solid rgba(166,135,124,.6);box-shadow:0 20px 60px rgba(0,0,0,.6)}
+
+/* focus band: a bit of black behind date -> color coding */
+.focus{position:relative;z-index:2;padding:70px 0 90px;background:linear-gradient(180deg,rgba(6,0,0,0) 0,rgba(6,0,0,.74) 150px,rgba(6,0,0,.74) calc(100% - 150px),rgba(6,0,0,0) 100%)}
+
+/* fade-in on scroll */
+.rv{opacity:0;transform:translateY(26px);transition:opacity 1s ease,transform 1s ease}
+.rv.in{opacity:1;transform:none}
 
 /* RSVP */
 .rsvp{position:relative;overflow:hidden;text-align:center;padding:54px 26px;border:1px solid rgba(166,135,124,.65);border-radius:8px;background:radial-gradient(circle at 50% 0%,rgba(166,135,124,.38),transparent 60%),linear-gradient(160deg,#735451 0%,#400101 100%);box-shadow:0 30px 60px -30px rgba(0,0,0,.85)}
@@ -335,8 +341,8 @@ body{width:100%;background:var(--cream);overflow-x:hidden;font-family:'Spectral'
     </div>
   </header>
 
-  <main class="wrap">
-    <section class="sec" style="padding-top:30px">
+  <div class="focus"><main class="wrap">
+    <section class="sec rv" style="padding-top:30px">
       <p class="kicker">save the date</p>
       <div class="when">
         <div><span class="lbl">Thursday</span><span class="num">12</span><span class="sub">November 2026</span></div>
@@ -360,7 +366,7 @@ body{width:100%;background:var(--cream);overflow-x:hidden;font-family:'Spectral'
       </div>
     </section>
 
-    <section class="sec">
+    <section class="sec rv">
       <p class="kicker">dress code</p>
       <div class="dress">
         <div class="dcol"><p class="dwho">Girls</p><p class="dwhat">Semi-Formal Dress</p></div>
@@ -378,25 +384,23 @@ body{width:100%;background:var(--cream);overflow-x:hidden;font-family:'Spectral'
         <div class="dress-note"><strong>Please Note</strong>We kindly ask all guests to observe the dress code and color motif above to help complete the theme of the celebration. Your effort means so much to us!</div>
       </div>
     </section>
-    <section class="sec">
+  </main></div>
+
+  <div class="wrap">
+    <section class="sec rv">
       <p class="kicker">moments</p>
       <div class="gallery">
         <figure class="gal arch2"><img data-base="gallery-1" alt="Martina photo 1"></figure><figure class="gal tall"><img data-base="gallery-2" alt="Martina photo 2"></figure><figure class="gal wide"><img data-base="gallery-3" alt="Martina photo 3"></figure><figure class="gal tall"><img data-base="gallery-4" alt="Martina photo 4"></figure><figure class="gal arch2"><img data-base="gallery-5" alt="Martina photo 5"></figure><figure class="gal wide"><img data-base="gallery-6" alt="Martina photo 6"></figure>
       </div>
     </section>
-  </main>
-
-  <div class="photo-break" style="background-image:url('bg-dress-code.jpeg');"></div>
-
-  <div class="wrap">
-    <section class="sec">
+    <section class="sec rv">
       <p class="kicker">18 traditions</p>
       <div class="trads">
-        <div class="tc"><span class="tc-n">18</span><p class="tc-t">Roses</p><ol><li>Ranjith Luna</li><li>Matthew Paramio</li><li>Sanjie Gatchalian</li><li>Gerome De Vera</li><li>Tristhan Rivera</li><li>Patrick Aquino</li><li>Kenneth Siapno</li><li>Mr. Jeff Malong</li><li>Renzo Luna</li><li>Josh Obedoza</li><li>Mr. Manny</li><li>Mr. Roldan Luna</li><li>Mr. Robert Luna</li><li>Mr. Ricky Luna</li><li>Ronald Luna</li><li>Mr. Randy Luna</li><li>Mr. Rhem Siapno</li><li>Rannie Luna</li></ol></div><div class="tc"><span class="tc-n">18</span><p class="tc-t">Treasures</p><ol><li>Jaenna Arias</li><li>Heart Dela Cruz</li><li>Stephanie Diocares</li><li>Mikhaella Meneses</li><li>Arthea Rosario</li><li>Noreen Jaramillo</li><li>Estephanie Mabajen</li><li>Sophia Cabrito</li><li>Aiden Tarlit</li><li>Heizel Berk</li><li>Mrs. Ryka Narvante-Halili</li><li>Ronalyn Luna</li><li>Rhesalyn Luna</li><li>Mrs. Paulyn Luna</li><li>Mrs. Shirley Luna</li><li>Mrs. Jovy Obedoza</li><li>Mrs. Jovencia Obedoza</li><li>Maureen Joy Paldeng</li><li>Mrs. CJ Baguis</li><li>Joan Luna</li></ol></div><div class="tc"><span class="tc-n">18</span><p class="tc-t">Books</p><ol><li>Angelica Luna</li><li>Juliana Lalimo</li><li>Leana Ramos</li><li>Girlie Mabajen</li><li>Vinnese Fernandez</li><li>Julianna Clata</li><li>Lorraine Lagatao</li><li>Barbie Laguerta</li><li>Jewel Ulanday</li><li>Mya Cabansag</li><li>Sophia Fernandez</li><li>Sophea Viray</li><li>Cyrel Columbres</li><li>Ashley Badinas</li><li>Leana Visperas</li><li>Hanna Ferrer</li><li>Timothy Diaz</li><li>Pauleen Calicdan</li><li>Ms. Marlyn Suarez</li><li>Jennica De Vera</li></ol></div><div class="tc"><span class="tc-n">18</span><p class="tc-t">Blessings<small>(Blue Bills)</small></p><ol><li>Mrs. Josephine Paldeng</li><li>Mrs. Lina Obedoza</li><li>Mr. Mauro Paldeng</li><li>Mr. Jr. Obedoza</li><li>Mrs. Kendy Sarmiento</li><li>Mr. Nestor Bonrostro</li><li>Mr. Jay Siapno</li><li>Ms. Cheila Abuibag</li><li>Mrs. Jesibeth Salazar</li><li>Mrs. Evelyn Obedoza</li><li>Doc. Rigor Obedoza</li><li>Mrs. Judith Millaflores</li><li>Ms. Rubilyn Panis</li><li>Mr. Rolly Bermuedez</li><li>Ms. Chelzia Calixtro</li><li>Mrs. Delia Talpis</li><li>Mrs. Lorna De Vera</li><li>Rowena Luna Onuki</li></ol></div>
+        <div class="tc rv"><span class="tc-n">18</span><p class="tc-t">Roses</p><ol><li>Ranjith Luna</li><li>Matthew Paramio</li><li>Sanjie Gatchalian</li><li>Gerome De Vera</li><li>Tristhan Rivera</li><li>Patrick Aquino</li><li>Kenneth Siapno</li><li>Mr. Jeff Malong</li><li>Renzo Luna</li><li>Josh Obedoza</li><li>Mr. Manny</li><li>Mr. Roldan Luna</li><li>Mr. Robert Luna</li><li>Mr. Ricky Luna</li><li>Ronald Luna</li><li>Mr. Randy Luna</li><li>Mr. Rhem Siapno</li><li>Rannie Luna</li></ol></div><div class="tc rv"><span class="tc-n">18</span><p class="tc-t">Treasures</p><ol><li>Jaenna Arias</li><li>Heart Dela Cruz</li><li>Stephanie Diocares</li><li>Mikhaella Meneses</li><li>Arthea Rosario</li><li>Noreen Jaramillo</li><li>Estephanie Mabajen</li><li>Sophia Cabrito</li><li>Aiden Tarlit</li><li>Heizel Berk</li><li>Mrs. Ryka Narvante-Halili</li><li>Ronalyn Luna</li><li>Rhesalyn Luna</li><li>Mrs. Paulyn Luna</li><li>Mrs. Shirley Luna</li><li>Mrs. Jovy Obedoza</li><li>Mrs. Jovencia Obedoza</li><li>Maureen Joy Paldeng</li><li>Mrs. CJ Baguis</li><li>Joan Luna</li></ol></div><div class="tc rv"><span class="tc-n">18</span><p class="tc-t">Books</p><ol><li>Angelica Luna</li><li>Juliana Lalimo</li><li>Leana Ramos</li><li>Girlie Mabajen</li><li>Vinnese Fernandez</li><li>Julianna Clata</li><li>Lorraine Lagatao</li><li>Barbie Laguerta</li><li>Jewel Ulanday</li><li>Mya Cabansag</li><li>Sophia Fernandez</li><li>Sophea Viray</li><li>Cyrel Columbres</li><li>Ashley Badinas</li><li>Leana Visperas</li><li>Hanna Ferrer</li><li>Timothy Diaz</li><li>Pauleen Calicdan</li><li>Ms. Marlyn Suarez</li><li>Jennica De Vera</li></ol></div><div class="tc rv"><span class="tc-n">18</span><p class="tc-t">Blessings<small>(Blue Bills)</small></p><ol><li>Mrs. Josephine Paldeng</li><li>Mrs. Lina Obedoza</li><li>Mr. Mauro Paldeng</li><li>Mr. Jr. Obedoza</li><li>Mrs. Kendy Sarmiento</li><li>Mr. Nestor Bonrostro</li><li>Mr. Jay Siapno</li><li>Ms. Cheila Abuibag</li><li>Mrs. Jesibeth Salazar</li><li>Mrs. Evelyn Obedoza</li><li>Doc. Rigor Obedoza</li><li>Mrs. Judith Millaflores</li><li>Ms. Rubilyn Panis</li><li>Mr. Rolly Bermuedez</li><li>Ms. Chelzia Calixtro</li><li>Mrs. Delia Talpis</li><li>Mrs. Lorna De Vera</li><li>Rowena Luna Onuki</li></ol></div>
       </div>
     </section>
 
-    <section class="sec">
+    <section class="sec rv">
       <div class="rsvp">
         <span class="lbl">Kindly Confirm Your Attendance</span>
         <p class="rsvp-t">RSVP</p>
@@ -407,7 +411,7 @@ body{width:100%;background:var(--cream);overflow-x:hidden;font-family:'Spectral'
       </div>
     </section>
 
-    <section class="foot">
+    <section class="foot rv">
       <span class="lbl">With love,</span>
       <span class="footer-name">Martina &amp; Family</span>
       <svg class="orn" width="70" height="28" viewBox="0 0 70 28"><use href="#orn"/></svg>
@@ -573,6 +577,14 @@ tryBg('main-picture.jpeg','heroBg');
     t.style.cssText=`left:${Math.random()*100}%;top:${Math.random()*100}%;width:${z}px;height:${z}px;background:#cdb5ad;animation-delay:${Math.random()*3.5}s;animation-duration:${2.5+Math.random()*3}s`;
     host.appendChild(t);
   }
+})();
+
+/* FADE-IN ON SCROLL */
+(function(){
+  const els=document.querySelectorAll('.rv');
+  if(!('IntersectionObserver' in window)){els.forEach(x=>x.classList.add('in'));return}
+  const io=new IntersectionObserver(es=>es.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target)}}),{threshold:.1});
+  els.forEach(x=>io.observe(x));
 })();
 
 /* GALLERY: loads gallery-1 ... gallery-6 (.jpg/.jpeg/.png/.webp) + lightbox */
